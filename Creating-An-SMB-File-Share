@@ -1,1 +1,2 @@
-New-SmbShare -Name "Test Folder" -Path "C:\Test Folder" -CachingMode None
+New-Item -ItemType Directory -Path "C:\Test Folder 01" -Name "Test Folder 01"
+New-SmbShare -Name "Test Folder 01" -Path "C:\Test Folder 01" -CachingMode None
