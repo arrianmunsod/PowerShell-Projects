@@ -1,9 +1,10 @@
 # WORK IN PROGRESS! CODE IS NOT YET FUNCTIONAL!
 
 # First, we need to make sure the File Services feature is installed, if not, we need to automate the installation
-# $FeatureName is the variable name used for File Services
+# $FeatureName is the variable name used for File-Services
 # $ComputerName is the name of the computer you want the feature to be installed at, usually they are your...
 # dedicated file server(s). Example: DC01 / FILE-SERVER01
+# Write-Host spits out message to PowerShell terminal
 
 $FeatureName = "File-Services"
 $ComputerName = "server1"
