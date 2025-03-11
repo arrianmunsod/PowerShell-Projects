@@ -4,6 +4,8 @@
 # $FeatureName is the variable name used for File-Services
 # $ComputerName is the name of the computer you want the feature to be installed at, usually they are your...
 # dedicated file server(s). Example: DC01 / FILE-SERVER01
+# You need Administrator privilege to run this code
+# You also need permissions if you want to run this script on a remote computer
 # Write-Host spits out message to PowerShell terminal
 
 $FeatureName = "File-Services"
