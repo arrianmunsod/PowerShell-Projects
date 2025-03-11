@@ -13,6 +13,9 @@
 # Where-Object documentation at: 
 # https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/where-object?view=powershell-7.5
 
+# $_ in the Where-Object is a placeholder for the piped value
+# .Installed is accessing the property of that object
+
 # $LASTEXITCODE is an automatic variable that stores the exit coe of the last native executable
 
 $FeatureName = "File-Services"
