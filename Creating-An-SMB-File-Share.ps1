@@ -4,19 +4,19 @@
 # $FeatureName is the variable name used for File-Services
 # $ComputerName is the name of the computer you want the feature to be installed at, usually they are your...
 # dedicated file server(s). Example: DC01 / FILE-SERVER01
+
 # You need Administrator privilege to run this code
 # You also need permissions if you want to run this script on a remote computer
 # Write-Host spits out message to PowerShell terminal
+
 # -not and -eq are logical operators for those who are new to PowerShell
 # Where-Object documentation at: 
 # https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/where-object?view=powershell-7.5
 
+# $LASTEXITCODE is an automatic variable that stores the exit coe of the last native executable
 
 $FeatureName = "File-Services"
 $ComputerName = "server1"
-
-# Installation of File Services feature without the terminal messages
-if (-not (Get-WindowsFeature -Name $FeatureName -ComputerName $ComputerName | Where-Object {}))
 
 # Check if the feature is already installed
 if (-not (Get-WindowsFeature -Name $FeatureName -ComputerName $ComputerName | Where-Object {$_.Installed -eq $true})) {
@@ -33,6 +33,11 @@ if (-not (Get-WindowsFeature -Name $FeatureName -ComputerName $ComputerName | Wh
     # Feature is already installed, skip
     Write-Host "Feature '$FeatureName' is already installed on '$ComputerName'. Skipping installation."
 }
+
+# Installation of File Services feature without the terminal messages
+#if (-not (Get-WindowsFeature -Name $FeatureName -ComputerName $ComputerName | Where-Object {$_.Installed -eq $true})) {
+#    Install-WindowsFeature -Name $FeatureName -ComputerName $ComputerName
+#}
 
 # You can type this directly to the PowerShell terminal 
 New-Item -ItemType Directory -Path "C:\Test-Folder-01"
