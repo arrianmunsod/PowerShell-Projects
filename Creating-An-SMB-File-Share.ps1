@@ -1,3 +1,10 @@
+# WORK IN PROGRESS! CODE IS NOT YET FUNCTIONAL!
+
+# First, we need to make sure the File Services feature is installed, if not, we need to automate the installation
+# $FeatureName is the variable name used for File Services
+# $ComputerName is the name of the computer you want the feature to be installed at, usually they are your...
+# dedicated file server(s). Example: DC01 / FILE-SERVER01
+
 $FeatureName = "File-Services"
 $ComputerName = "server1"
 
@@ -21,7 +28,7 @@ if (-not (Get-WindowsFeature -Name $FeatureName -ComputerName $ComputerName | Wh
 New-Item -ItemType Directory -Path "C:\Test-Folder-01"
 New-SmbShare -Name "Test-Folder-01" -Path "C:\Test-Folder-01" -CachingMode None
 
-# Line number 2 creates the folder first, assuming you haven't created it
+# Line number (#) creates the folder first, assuming you haven't created it
 
 # -ChangeAccess [<String[]>]    specify which users are granted modify permission to access the share
 #   multiple users can specified by using a comma-separated list inside the array
