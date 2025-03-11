@@ -7,9 +7,16 @@
 # You need Administrator privilege to run this code
 # You also need permissions if you want to run this script on a remote computer
 # Write-Host spits out message to PowerShell terminal
+# -not and -eq are logical operators for those who are new to PowerShell
+# Where-Object documentation at: 
+# https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/where-object?view=powershell-7.5
+
 
 $FeatureName = "File-Services"
 $ComputerName = "server1"
+
+# Installation of File Services feature without the terminal messages
+if (-not (Get-WindowsFeature -Name $FeatureName -ComputerName $ComputerName | Where-Object {}))
 
 # Check if the feature is already installed
 if (-not (Get-WindowsFeature -Name $FeatureName -ComputerName $ComputerName | Where-Object {$_.Installed -eq $true})) {
