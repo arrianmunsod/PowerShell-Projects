@@ -1,27 +1,21 @@
 # WORK IN PROGRESS! CODE IS NOT YET FUNCTIONAL!
+# WORK IN PROGRESS! CODE IS NOT YET FUNCTIONAL!
+# WORK IN PROGRESS! CODE IS NOT YET FUNCTIONAL!
 
-# First, we need to make sure the File Services feature is installed, if not, we need to automate the installation
-# $FeatureName is the variable name used for File-Services
-# $ComputerName is the name of the computer you want the feature to be installed at, usually they are your...
-# dedicated file server(s). Example: DC01 / FILE-SERVER01
+# This script does 3 things:
+# 1. Automatically install the required File Services feature if it is not yet installed
+# 2. Will automatically create a folder on a preferred file server, on a custom path
+# 3. Will assign preferred permissions to the newly-created folder
 
-# You need Administrator privilege to run this code
-# You also need permissions if you want to run this script on a remote computer
-# Write-Host spits out message to PowerShell terminal
+# If you're new to PowerShell and you have questions, a quick google search can help you
+# Microsoft also provides great documentation of PowerShell on their website
+# You can email me at arrianmunsod312@gmail.com 
 
-# -not and -eq are logical operators for those who are new to PowerShell
-# Where-Object documentation at: 
-# https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/where-object?view=powershell-7.5
-
-# $_ in the Where-Object is a placeholder for the piped value
-# .Installed is accessing the property of that object
-
-# $LASTEXITCODE is an automatic variable that stores the exit coe of the last native executable
-
+# $ComputerName is the computer you want to install the File Services, usually your file server or domain controller
 $FeatureName = "File-Services"
 $ComputerName = "server1"
 
-# Check if the feature is already installed
+# This block of code will check if File Services is already installed, if not, installation proceeds
 if (-not (Get-WindowsFeature -Name $FeatureName -ComputerName $ComputerName | Where-Object {$_.Installed -eq $true})) {
     # Feature is not installed, install it
     Write-Host "Feature '$FeatureName' is not installed on '$ComputerName'. Installing..."
@@ -36,11 +30,6 @@ if (-not (Get-WindowsFeature -Name $FeatureName -ComputerName $ComputerName | Wh
     # Feature is already installed, skip
     Write-Host "Feature '$FeatureName' is already installed on '$ComputerName'. Skipping installation."
 }
-
-# Installation of File Services feature without the terminal messages
-#if (-not (Get-WindowsFeature -Name $FeatureName -ComputerName $ComputerName | Where-Object {$_.Installed -eq $true})) {
-#    Install-WindowsFeature -Name $FeatureName -ComputerName $ComputerName
-#}
 
 # You can type this directly to the PowerShell terminal 
 New-Item -ItemType Directory -Path "C:\Test-Folder-01"
